@@ -1,10 +1,7 @@
-import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
-import time
 
 
 def test_show_banner():
@@ -21,21 +18,76 @@ def test_show_banner():
     wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'img.rax-image ')))
     assert len(driver.find_elements_by_css_selector('img.rax-image ')) == 2
     # нажимаю на крестик на баннере
-    # element = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'img.rax-image ')))
     driver.find_elements_by_css_selector('img.rax-image ')[1].click()
-    time.sleep(5)
     # переключение на главную страницу сайта
     driver.switch_to.default_content()
-    # driver.switch_to.frame('ym-native-frame')
     # проверяю, что баннера нет на странице
-    # wait.until(EC.invisibility_of_element_located((By.CSS_SELECTOR, 'img.rax-image ')))
     assert not driver.find_elements_by_css_selector('img.rax-image ')
     # нажала на кнопку с телефонами
     driver.find_element_by_css_selector('#home-firstscreen .cl-item-phones .cate-name').click()
-    # убираю тупой баннер, который мешает номально дописать этот тест!!!!!!!!!!!!!!!!!!!!!!
-    driver.switch_to.frame('ym-native-frame')
-    wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'a.next-dialog-close')))
+    # убираю тупой баннер
+
+    driver.switch_to.frame(driver.find_elements_by_css_selector('ym-native-frame'))
+    # wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'a.next-dialog-close')))
     # assert len(driver.find_elements_by_css_selector('a.next-dialog-close')) == 1
     driver.find_element_by_css_selector('a.next-dialog-close').click()
-    # проверка что товары есть на старнице
+    assert len(driver.find_elements_by_class_name('list product-card')) >= 1
+    driver.back()
+    # проверяю что в каждой категории есть товары
+    driver.find_element_by_css_selector('#home-firstscreen .cl-item-computer .cate-name').click()
+    assert len(driver.find_elements_by_class_name('list product-card')) >= 1
+    driver.back()
+
+    driver.find_element_by_css_selector('#home-firstscreen .cl-item '
+                                        'cl-item-electronics .cate-name').click()
+    assert len(driver.find_elements_by_class_name('list product-card')) >= 1
+    driver.back()
+
+    driver.find_element_by_css_selector('#home-firstscreen .cl-item '
+                                        'cl-item-homeImprovemen .cate-name').click()
+    assert len(driver.find_elements_by_class_name('list product-card')) >= 1
+    driver.back()
+
+    driver.find_element_by_css_selector('#home-firstscreen .cl-item '
+                                        'cl-item-women .cate-name').click()
+    assert len(driver.find_elements_by_class_name('list product-card')) >= 1
+    driver.back()
+
+    driver.find_element_by_css_selector('#home-firstscreen .cl-item '
+                                        'cl-item-men .cate-name').click()
+    assert len(driver.find_elements_by_class_name('list product-card')) >= 1
+    driver.back()
+
+    driver.find_element_by_css_selector('#home-firstscreen .cl-item '
+                                        'cl-item-toys .cate-name').click()
+    assert len(driver.find_elements_by_class_name('list product-card')) >= 1
+    driver.back()
+
+    driver.find_element_by_css_selector('#home-firstscreen .cl-item '
+                                        'cl-item-jewelry .cate-name').click()
+    assert len(driver.find_elements_by_class_name('list product-card')) >= 1
+    driver.back()
+
+    driver.find_element_by_css_selector('#home-firstscreen .cl-item '
+                                        'cl-item-shoes .cate-name').click()
+    assert len(driver.find_elements_by_class_name('list product-card')) >= 1
+    driver.back()
+
+    driver.find_element_by_css_selector('#home-firstscreen .cl-item '
+                                        'cl-item-garden .cate-name').click()
+    assert len(driver.find_elements_by_class_name('list product-card')) >= 1
+    driver.back()
+
+    driver.find_element_by_css_selector('#home-firstscreen .cl-item '
+                                        'cl-item-autoParts .cate-name').click()
+    assert len(driver.find_elements_by_class_name('list product-card')) >= 1
+    driver.back()
+
+    driver.find_element_by_css_selector('#home-firstscreen .cl-item '
+                                        'cl-item-beauty .cate-name').click()
+    assert len(driver.find_elements_by_class_name('list product-card')) >= 1
+    driver.back()
+
+    driver.find_element_by_css_selector('#home-firstscreen .cl-item '
+                                        'cl-item-sports .cate-name').click()
     assert len(driver.find_elements_by_class_name('list product-card')) >= 1
