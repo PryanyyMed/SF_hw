@@ -25,11 +25,8 @@ def test_show_banner():
     assert not driver.find_elements_by_css_selector('img.rax-image ')
     # нажала на кнопку с телефонами
     driver.find_element_by_css_selector('#home-firstscreen .cl-item-phones .cate-name').click()
-    # убираю тупой баннер
-
-    driver.switch_to.frame(driver.find_elements_by_css_selector('ym-native-frame'))
-    # wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'a.next-dialog-close')))
-    # assert len(driver.find_elements_by_css_selector('a.next-dialog-close')) == 1
+    
+    # убираю баннер, нажимаю на крестик
     driver.find_element_by_css_selector('a.next-dialog-close').click()
     assert len(driver.find_elements_by_class_name('list product-card')) >= 1
     driver.back()
