@@ -1,15 +1,11 @@
 from selenium import webdriver
 import unittest
 import sys
-import time
 import os
 
 sys.path.append('..')
 from pages.loginPage import LoginPage
 from pages.homePage import HomePage
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 
 class LoginTest(unittest.TestCase):
@@ -76,9 +72,6 @@ class LoginTest(unittest.TestCase):
     def test_telephone_btn(self):
         driver = self.driver
         driver.get("https://www.svyaznoy.ru/")
-        # homepage.название_def_из-homePage
-        # -это ссылка на класс из файла homePage, от туда идут ссылки на локаторы и функции с ними.
-        # Здесь можно передавать переменные в тест (логин, пароль и тд)
         homepage = HomePage(driver)
         homepage.close_pop_up()
         homepage.click_telephone_btn()
@@ -92,7 +85,6 @@ class LoginTest(unittest.TestCase):
         homepage.click_on_product_page_link()
         URL = driver.current_url
         assert homepage.first_telephone_link in URL
-        # self.driver.back()
 
     def test_place_cursor_telephone_btn(self):
         driver = self.driver
@@ -167,21 +159,6 @@ class LoginTest(unittest.TestCase):
         homepage.click_on_first_audio()
         URL = driver.current_url
         assert homepage.first_audio_link in URL
-
-
-
-        # homepage.click_pc()
-        # homepage.click_audio()
-        # homepage.click_gaming()
-        # homepage.click_household()
-        # homepage.click_photo_video()
-        # homepage.click_repairs()
-        # homepage.click_accessories()
-        # homepage.click_kids()
-        # homepage.click_essential_goods()
-        # homepage.click_auto()
-        # homepage.click_soft()
-        # homepage.click_NY_goods()
 
     @classmethod
     def tearDownClass(cls):
