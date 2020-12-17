@@ -7,9 +7,6 @@ import os
 sys.path.append('..')
 from pages.homePage import HomePage
 from pages.productPage import ProductPage
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 
 class LoginTest(unittest.TestCase):
