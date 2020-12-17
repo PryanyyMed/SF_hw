@@ -24,17 +24,6 @@ class LoginTest(unittest.TestCase):
         page.send_keys(Keys.END)
         assert driver.find_element_by_xpath(homepage.footer_block)
 
-    # def test_click_facebook(self):
-    #     driver = self.driver
-    #     driver.get("https://www.svyaznoy.ru/")
-    #     driver.implicitly_wait(10)
-    #     homepage = HomePage(driver)
-    #     page = driver.find_element_by_tag_name("html")
-    #     page.send_keys(Keys.END)
-    #     homepage.click_facebook()
-    #     URL = driver.current_url
-    #     assert URL == "https://www.facebook.com/svyaznoy.ru"
-
     @classmethod
     def tearDownClass(cls):
         cls.driver.close()
