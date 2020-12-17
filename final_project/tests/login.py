@@ -1,14 +1,11 @@
 from selenium import webdriver
 import unittest
-import pickle
 import sys
 import os
 sys.path.append('..')
 from pages.loginPage import LoginPage
 from pages.homePage import HomePage
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 
 class LoginTest(unittest.TestCase):
@@ -33,7 +30,6 @@ class LoginTest(unittest.TestCase):
         login.enter_username("dan555505@yandex.ru")
         login.enter_password("123456Pp")
         login.click_login2()
-        pickle.dump(driver.get_cookies(), open("cookies.pkl", "wb"))
 
         wait = WebDriverWait(self.driver, 10)
         assert self.driver.find_element_by_class_name('b-personal__board-name').text == "Dan"
